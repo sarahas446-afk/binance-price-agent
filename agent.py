@@ -1,12 +1,8 @@
 import json
-import urllib.parse
 import urllib.request
 
 
-# Temporary public market-data source.
-# Binance direct API can be restricted in some environments such as Colab.
 COINBASE_API = "https://api.exchange.coinbase.com/products"
-
 
 SUPPORTED_SYMBOLS = {
     "BTCUSDT": "BTC-USD",
@@ -15,7 +11,6 @@ SUPPORTED_SYMBOLS = {
 
 
 def get_price(symbol):
-    """Get current price and 24h market statistics."""
     symbol = symbol.upper().replace("/", "")
 
     if symbol not in SUPPORTED_SYMBOLS:
@@ -25,7 +20,12 @@ def get_price(symbol):
     url = f"{COINBASE_API}/{product}/stats"
 
     try:
-        with urllib.request.urlopen(url, timeout=10) as response:
+        request = urllib.request.Request(
+            url,
+            headers={"User-Agent": "Binance-Price-Agent/1.0"}
+        )
+
+        with urllib.request.urlopen(request, timeout=10) as response:
             data = json.loads(response.read().decode())
 
         last_price = float(data["last"])
@@ -47,7 +47,7 @@ def get_price(symbol):
 
 
 def main():
-    print("🤖 Binance Price Agent")
+    print("Binance Price Agent")
     print("Read-only market data agent")
     print("Supported symbols: BTCUSDT, ETHUSDT")
     print("Type 'exit' to quit.\n")
@@ -62,10 +62,10 @@ def main():
         result = get_price(symbol)
 
         if "error" in result:
-            print(f"❌ Error: {result['error']}\n")
+            print(f"Error: {result['error']}\n")
             continue
 
-        print("\n📊 Market Data")
+        print("\nMarket Data")
         print(f"Symbol: {result['symbol']}")
         print(f"Price: ${result['price']:,.2f}")
         print(f"24h Change: {result['change_24h']:+.2f}%")
