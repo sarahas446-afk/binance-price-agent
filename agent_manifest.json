@@ -1,0 +1,14 @@
+{
+  "name": "Binance Price Agent",
+  "version": "0.1.0",
+  "description": "Read-only AI agent for Binance market price data",
+  "capabilities": [
+    "market_price",
+    "24h_statistics"
+  ],
+  "safety": {
+    "read_only": true,
+    "trading_enabled": false,
+    "withdrawals_enabled": false
+  }
+}
