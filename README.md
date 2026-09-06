@@ -1,26 +1,32 @@
-# Binance Price Agent
+# Binance Market Analysis Agent
 
-AI-powered Binance market price agent built with Binance Agent OS.
+A read-only cryptocurrency market analysis prototype designed for the Binance Agent OS Mini Hackathon — Track A.
+
+## Theme
+
+Data Analysis / Market Analysis
 
 ## Features
 
-- Get real-time Binance market prices
-- View 24h price change
-- View 24h high and low
-- View 24h trading volume
-- Supports BTC, ETH, BNB and other Binance symbols
+- Current cryptocurrency price
+- 24-hour price change
+- 24-hour high and low
+- 24-hour trading volume
+- Supports BTCUSDT and ETHUSDT
 - Read-only market data
-- No API key required
+- No trading
+- No withdrawals
+- No account access
 
 ## Example
 
 ```text
 Ask for a price: BTCUSDT
 
-📊 Binance Market Data
+Market Data
 Symbol: BTCUSDT
-Price: ...
-24h Change: ...%
-24h High: ...
-24h Low: ...
+Price: $...
+24h Change: +...%
+24h High: $...
+24h Low: $...
 24h Volume: ...
